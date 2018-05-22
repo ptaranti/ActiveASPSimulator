@@ -1,0 +1,10 @@
+ 
+success; 18/01/2010; 13:06:28.885 ; Ship5999998; 5999998; 10182010011813062786942;1; 
+    
+set xdata time
+     set timefmt "%d/%m/%y"
+  %  set xrange ["03/21/95":"03/22/95"]
+     set format x "%d/%m"
+     set timefmt "%m/%d/%y %H:%M"
+     plot "data" using 1:3
+

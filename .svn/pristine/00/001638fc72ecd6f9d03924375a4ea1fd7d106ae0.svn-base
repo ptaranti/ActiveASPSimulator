@@ -1,0 +1,207 @@
+######################################################
+#                                                    #
+#	Arquivo de configuração do sistema simShip       #
+#                                                    #
+######################################################
+
+#Este arquivo contém os parametros de inicialização para um build da simulação
+
+	
+######################################################
+# Parte 1 - Navios 
+######################################################	
+
+
+#Numero de navios de comportamento correto a serem instanciados
+#serao identificados na simulacao com seis digitos em contagem crescente a partir 
+#de X000001, sendo X o CG code
+NR_SIM_SHIPS=4
+
+#Numero de navios de comportamento erroneo (emitem mensagens atrasadas) a serem instanciados
+#serao identificados na simulacao com seis digitos em contagem decrescente a partir 
+#de X999998 sendo X o CG code
+NR_DELAYED_SIM_SHIPS=3
+
+#Informar se será realizado teste de PORT
+#caso seja executado será instanciado o navio com numero X999999 sendo X o CG code
+PORT_TEST=false
+
+
+#naciolalidade dos Navios (LRIT ID do flag state)
+LDU=1018
+
+#identificacao do ASP (LRIT ID do flag state)
+ASP=4099
+
+#Local de instanciacao para Navios comuns e de comportamento erroneo e porta de comunicação 
+#usar os locais pre determinados ou criar um novo
+#usar porta logica vaga entre 16001 e 16019
+	
+#criar os navios na area da COREIA
+#JADE_PORT = 16004
+#CG_CODE = 4
+#LAT_NORTH = 37
+#LAT_SOUTH = 35
+#LONG_EAST = 129
+#LONG_WEST = 127
+	
+#criar os navios espalhados pelo MUNDO
+#JADE_PORT = 16001
+#LAT_NORTH = 89
+#LAT_SOUTH = -89
+#LONG_EAST = 179
+#LONG_WEST = -179
+	
+#criar os navios na area da LIBÉRIA
+#JADE_PORT = 16005
+#CG_CODE = 5
+#LAT_NORTH = 0
+#LAT_SOUTH = -5
+#LONG_EAST = -10
+#LONG_WEST = -14
+	
+#criar os navios na area de Bahamas
+#JADE_PORT = 16007
+#CG_CODE = 7
+#LAT_NORTH = 26
+#LAT_SOUTH = 25
+#LONG_EAST = -76
+#LONG_WEST = -78
+	
+#criar os navios na area das Ilhas Marshal	
+#JADE_PORT = 16008
+#CG_CODE = 8
+#LAT_NORTH = 12
+#LAT_SOUTH = 7
+#LONG_EAST = 170
+#LONG_WEST = 167
+
+#criar os navios na area dos USA - amostra 1	
+#JADE_PORT = 16009
+#CG_CODE = 9
+#LAT_NORTH = 50
+#LAT_SOUTH = 40
+#LONG_EAST = -53
+#LONG_WEST = -63
+
+#criar os navios na area dos USA - amostra 2
+JADE_PORT=16003
+CG_CODE = 5
+LAT_NORTH = 32
+LAT_SOUTH = 27
+LONG_EAST = -73
+LONG_WEST = -79
+
+#criar os navios na area de Tuvalu
+#JADE_PORT = 16010
+#LAT_NORTH = -5
+#LAT_SOUTH = -9
+#LONG_EAST = 179
+#LONG_WEST = 175
+	
+#criar os navios na area da Europa
+#JADE_PORT = 16011
+#CG_CODE = 9
+#LAT_NORTH = 45
+#LAT_SOUTH = 35
+#LONG_EAST = 19
+#LONG_WEST = -9
+	
+#criar os navios na area do Brazil
+#JADE_PORT = 16012
+#CG_CODE = 9
+#LAT_NORTH = -6
+#LAT_SOUTH = -24
+#LONG_EAST = -22
+#LONG_WEST = -40
+
+#criar os navios na area do Uruguay
+#JADE_PORT = 16012
+#CG_CODE = 9
+#LAT_NORTH = -6
+#LAT_SOUTH = -24
+#LONG_EAST = -22
+#LONG_WEST = -40
+	
+
+
+# Limites de velocidade para navios, exceto para o teste de port	
+MAX_VELOC = 30
+MIN_VELOC = 15
+	
+# PERÍODO PADRAO DE INFORMAÇÃO MSG 1
+# Valor default 15 minutos, para aderir ao protololo do Centro de Dados
+# Dimunuir o tempo para testes de carga de mensagens/tempo
+DEFAULT_TIME_MSG1_MINUTES = 1
+	
+#Enviar mensagem a cada default time
+# valor default - false
+# alterar para true para aumentar a carga de processamento no Centro de dados 
+SEND_EACH_STEP_TYPE = true
+	
+# PERÍODO ATUALIZACAO POSICAO
+# Default time é 1 minuto
+DEFAULT_TIME_POSITION_SET_MINUTES = 1
+
+#Tempo entre a criação de dois agentes
+#usado para espalhar a amostra de navios no tempo 
+#informacao em milisegundos
+TIME_INTERVAL=10
+
+#Dados para teste de port
+#usados para criar um navio com derrota fixa 
+#ATENCAO AO PADRAO INVERTIDO
+#(X,Y) -> (Long, LAT)
+COORD_INICIAL_X = -69
+COORD_INICIAL_Y = 18.2
+COORD_FINAL_X = -63
+COORD_FINAL_Y = 18.2
+VELOC_TESTE_DERROTA_FIXA = 160
+	
+	
+#########################################################
+#             Enderecos do Ambiente                     #
+#########################################################
+	
+
+#Endereco do servico do Centro de Dados
+# IMPORTANTE- caso o client do web service do DC seja recriado é 
+#necessário alterar o arquivo 
+#org.imo.gisis.XML.LRIT._2008.DcServiceLocator.java, mudando a váriavel 
+#private java.lang.String dcPort_address para apontar para o endereço abaixo;
+#VM-ODO
+DC_PORT_ADRRESS_WS = http://10.5.112.220:8080/dc/asp/DCASPService
+	
+
+#Endereco do blackboard do ASP_sim
+#VM-ODO
+IP_BANCO = 10.5.112.219
+	
+
+########################################################
+#              SSL                                     #
+########################################################
+
+#informar uso de ssl - TRUE or FALSE
+USE_SSL=false
+
+#informar caminho absoluto do keystore ou somente o nome do arquivo
+#caso o mesmo esteja no mesmo diretório que o simulador
+
+#KEYSTORE_LOCATION=/srv/jade/keys/
+#KEYSTORE_NAME=new-lritsim-odo-2009-07-15.jks
+#KEYSTORE_PASSWORD=lritldu
+
+KEYSTORE_LOCATION=
+KEYSTORE_NAME=DC3018TESTING.jks
+KEYSTORE_PASSWORD=lritldu
+
+########################################################
+#                 DEBUG                                #
+########################################################
+
+#Inicia a aplicação em modo verboso
+#util para dúvidas em casos de teste ou para verificação de falhas do simulador
+#inicializa o agente de monitoracao e diversas mensagens de acompanhamento em console
+#default = false
+DEBUG = false
